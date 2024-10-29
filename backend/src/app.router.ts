@@ -18,7 +18,7 @@ export class AppRouter {
     const router = new Hono();
 
     router.route('/auth', this.authRouter.getRouter());
-    // router.use('/tic/*', authMiddleware);
+    router.use('/tic/*', authMiddleware);
     router.route('/tic', this.ticRouter.getRouter());
 
     return router;
