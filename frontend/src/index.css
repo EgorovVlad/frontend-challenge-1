@@ -13,5 +13,19 @@
     font-feature-settings: "kern" !important;
     -webkit-font-smoothing: antialiased;
     letter-spacing: -0.5px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    overflow-y: auto;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
   }
 }

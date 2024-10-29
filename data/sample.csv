@@ -1,4 +1,3 @@
-
 Claim ID,Subscriber ID,Member Sequence,Claim Status,Billed,Allowed,Paid,Payment Status Date,Service Date,Received Date,Entry Date,Processed Date,Paid Date,Payment Status,Group Name,Group ID,Division Name,Division ID,Plan,Plan ID,Place of Service,Claim Type,Procedure Code,Member Gender,Provider ID,Provider Name
 1391760987204,B5703463xK,6,Payable,4703.20,2383.32,1054.56,2024-12-13,2024-10-10,2024-11-19,2024-11-21,2024-12-07,2024-12-13,Paid,Global Enterprises,GLE003,North,N,Premium Care Plan,PCP002,Outpatient Hospital,Professional,s5301,Female,6388663927,Michael Poole
 9043135024767,h3999568qY,5,Denied,9512.66,1447.45,848.31,2024-12-19,2023-06-12,2024-07-07,2024-07-23,2024-10-01,2024-12-19,Paid,City Government,CGV004,West,W,Family Coverage Plan,FCP003,Outpatient Hospital,Institutional,E8948,Female,7800627673,Diane Rivera

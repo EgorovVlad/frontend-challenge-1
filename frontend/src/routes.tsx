@@ -1,18 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
 import BasicLayout from "./layout/BasicLayout";
 import NotFoundPage from "./pages/error/NotFound";
-import MainPage from "./pages/index";
+import LoginPage from "~/pages/LoginPage";
+import AuthLayout from "~/layout/AuthLayout";
+import TicFilesPage from '~/pages/TicFilesPage';
 
 const router = createBrowserRouter([
   {
-    element: <BasicLayout />,
+    element: <AuthLayout />,
     children: [
       {
-        path: "/",
-        element: <MainPage />,
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        element: <BasicLayout />,
+        children: [
+          {
+            path: "/",
+            element: <TicFilesPage />,
+          },
+        ],
+        errorElement: <NotFoundPage />,
       },
     ],
-    errorElement: <NotFoundPage />,
   },
 ]);
 
