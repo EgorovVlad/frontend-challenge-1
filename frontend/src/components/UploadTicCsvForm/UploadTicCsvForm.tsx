@@ -39,8 +39,9 @@ export const UploadTicCsvForm: React.FC<UploadTicCsvFormProps> = (props) => {
   const handleFileUpload = useCallback(
     async (file: File | null) => {
       if (!file) return;
-      setValue("csvFile", file);
+
       const parsedCsv = await parseCsvFile(file);
+      setValue("csvFile", file);
       setRowData(parsedCsv.table);
       setColumnDefs(
         parsedCsv.fields.map((field) => ({

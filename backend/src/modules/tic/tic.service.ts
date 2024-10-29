@@ -1,8 +1,11 @@
 import Ajv from 'ajv';
+import { StatusCodes } from 'http-status-codes';
 import { injectable, inject } from 'inversify';
 
+import { AppError } from '@/errors/app.error';
 import { Injection } from '@/injection';
 import { BillingCodeType, BillingClass, PlanMarketType, TinType } from '@/modules/tic/constants';
+import ticSchema from '@/modules/tic/json-schemas/tic.schema.json';
 import { TicStore } from '@/modules/tic/tic.store';
 import { InternalTiCData, TiC, TiCFile } from '@/modules/tic/types';
 import { parseCsvFile } from '@/utils/parse-csv-file';
@@ -57,14 +60,14 @@ export class TicService {
           billing_code_type: BillingCodeType.CPT,
           billing_code_type_version: '2024',
           billing_code: row.procedureCode,
-          description: '',
+          description: row.placeOfService,
           allowed_amounts: [
             {
               tin: {
                 type: TinType.EIN,
                 value: row.providerId,
               },
-              service_code: [row.placeOfService],
+              service_code: [],
               billing_class: row.claimType?.toLowerCase() as BillingClass,
               payments: [
                 {
@@ -85,10 +88,10 @@ export class TicService {
     };
 
     // Validate the generated TiC row using the schema
-    // const validate = this.ajv.compile(ticSchema);
-    // if (!validate(ticRow)) {
-    //   throw new AppError('Invalid TiC row data', StatusCodes.BAD_REQUEST); // Throw error if validation fails
-    // }
+    const validate = this.ajv.compile(ticSchema);
+    if (!validate(ticRow)) {
+      throw new AppError('Invalid TiC row data', StatusCodes.BAD_REQUEST); // Throw error if validation fails
+    }
 
     return ticRow;
   }

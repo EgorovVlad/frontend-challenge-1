@@ -1,4 +1,4 @@
-import { BillingClass, PlanMarketType, BillingCodeType, TinType } from '~/types/tic/constants';
+import { BillingClass, PlanMarketType, BillingCodeType, TinType, ServiceCode } from "~/types/tic/constants";
 
 export interface InternalTiCData {
   groupName: string;
@@ -42,7 +42,7 @@ export interface OutOfNetwork {
 
 export interface AllowedAmount {
   tin: Tin;
-  service_code: string[];
+  service_code: ServiceCode[];
   billing_class: BillingClass;
   payments: Payment[];
 }

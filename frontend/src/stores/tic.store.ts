@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from "mobx";
 import { TicApi } from "~/api/TicApi";
 import { TiCFile } from "~/types/tic/types";
 
@@ -15,21 +15,14 @@ class TicStore {
     try {
       const files = await TicApi.getTics();
       this.setTicFiles(files);
-    } catch {
     } finally {
       this.setIsLoading(false);
     }
   };
 
   uploadCsvTicFile = async (file: File) => {
-    this.setIsLoading(true);
-    try {
-      const newTicFiles = await TicApi.uploadCsvTicFile(file);
-      this.setTicFiles([...this.ticsFiles, ...newTicFiles]);
-    } catch {
-    } finally {
-      this.setIsLoading(false);
-    }
+    const newTicFiles = await TicApi.uploadCsvTicFile(file);
+    this.setTicFiles([...this.ticsFiles, ...newTicFiles]);
   };
 
   get ticsFiles() {
