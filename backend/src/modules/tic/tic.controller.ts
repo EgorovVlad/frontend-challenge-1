@@ -34,7 +34,7 @@ export class TicController {
     try {
       const body = await c.req.parseBody(); // Parse CSV data from request body
       const csvFile = body['file'] as File;
-      const ticRows = this.ticService.generateFromCSVFile(csvFile); // Convert CSV data to TiC format
+      const ticRows = await this.ticService.generateFromCSVFile(csvFile); // Convert CSV data to TiC format
       return c.json(ticRows); // Return converted data
     } catch {
       throw new AppError('Failed to process CSV', StatusCodes.BAD_REQUEST); // Handle CSV processing errors
