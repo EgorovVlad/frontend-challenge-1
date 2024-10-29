@@ -9,7 +9,6 @@ import { observer } from "mobx-react-lite";
 const TicFilesPage = observer(() => {
   const { isLoading, ticsFiles, loadTicFiles } = useTicStore();
   useEffect(() => void loadTicFiles(), [loadTicFiles]);
-
   if (isLoading) return <LoadingScreen />;
   return (
     <Container className="min-h-full">

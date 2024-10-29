@@ -18,7 +18,7 @@ export class TicService {
     const parsedCsv = await parseCsvFile(csv);
 
     // Convert each row to internal interface representation and skip the header row
-    const internalData: InternalTiCData[] = parsedCsv.map((row) => ({
+    const internalData: InternalTiCData[] = parsedCsv.table.map((row) => ({
       groupName: row['Group Name'],
       providerName: row['Provider Name'],
       plan: row['Plan'],

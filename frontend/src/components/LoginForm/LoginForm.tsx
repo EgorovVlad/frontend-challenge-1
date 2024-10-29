@@ -6,13 +6,10 @@ import { TextInput, PasswordInput, Button, Box, Title } from "@mantine/core";
 import { useAuthStore } from "~/stores/auth.store";
 import { AuthApi } from "~/api/AuthApi";
 import { observer } from "mobx-react-lite";
-import { sleep } from '~/utils/sleep';
+import { sleep } from "~/utils/sleep";
+import { loginSchema } from "~/components/LoginForm/validation";
 
-export type LoginFormData = z.infer<typeof loginSchema>;
-const loginSchema = z.object({
-  username: z.string().min(1, { message: "Invalid username" }),
-  password: z.string().min(6, { message: "Password must be at least 8 characters" }),
-});
+type LoginFormData = z.infer<typeof loginSchema>;
 
 export const LoginForm: React.FC = observer(() => {
   const { isAuthenticated, setLoggedIn } = useAuthStore();
@@ -35,7 +32,7 @@ export const LoginForm: React.FC = observer(() => {
     async (data) => {
       setIsLoading(true);
       try {
-        await sleep(1000) // imitate network request
+        await sleep(1000); // imitate network request
         await AuthApi.login(data.username, data.password);
         setLoggedIn(true);
       } catch {
