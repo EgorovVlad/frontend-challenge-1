@@ -26,7 +26,7 @@ export class TicStore {
     // Save TiC row to file
     const storeId = uuidv4();
     const storeTic: TiCFile = {
-      id: uuidv4(),
+      id: storeId,
       url: `http://localhost:8080/store/tic/${storeId}.json`,
       data: tic,
     };
